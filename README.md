@@ -1,2 +1,2 @@
 # FantasySimulation
-A project to attempt to fully simluate a LOTR-like fantasy world
+A project to attempt to fully simulate a LOTR-like fantasy world
