@@ -7,6 +7,7 @@ import { baseStatistics } from "../types/blueprints";
 import { Gender, PersonStatistics, Race, RaceStatistics } from "../types/types";
 import * as fs from "fs";
 
+const lastNames: string[] = fs.readFileSync("../data/names/lastNames.txt").toString().trim().split("\n");
 const femaleFirstNames: string[] = fs
     .readFileSync("../data/names/femaleFirstNames.txt")
     .toString()
@@ -17,7 +18,6 @@ const maleFirstNames: string[] = fs
     .toString()
     .trim()
     .split("\n");
-const lastNames: string[] = fs.readFileSync("../data/names/lastNames.txt").toString().trim().split("\n");
 
 export function createPerson(stats: {
     id: string;
@@ -27,12 +27,12 @@ export function createPerson(stats: {
     statistics?: PersonStatistics | undefined;
 }): Person {
     const gender: Gender =
-        stats?.gender != null && stats?.gender != undefined
+        stats?.gender != undefined
             ? stats.gender
             : (["M", "F"] satisfies Array<Gender>)[Math.floor(Math.random() * 2)];
 
     const name: string =
-        stats?.name != null && stats?.name != undefined
+        stats?.name != undefined
             ? stats.name
             : ((m_gender: Gender): string => {
                   const firstName: string =
@@ -44,7 +44,7 @@ export function createPerson(stats: {
               })(gender);
 
     const statistics: PersonStatistics =
-        stats?.statistics != null && stats?.statistics != undefined
+        stats?.statistics != undefined
             ? stats.statistics
             : ((m_race: Race): PersonStatistics => {
                   const stats = {
