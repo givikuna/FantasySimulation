@@ -1,0 +1,21 @@
+*.sql linguist-detectable=true
+*.md linguist-detectable=true
+*.json linguist-detectable=false
+*.jsonc linguist-detectable=true
+*.tson linguist-detectable=true
+*.yml linguist-detectable=true
+*.js linguist-detectable=true
+*.sh linguist-detectable=true
+*.bash linguist-detectable=true
+*.zsh linguist-detectable=true
+*.ts linguist-detectable=true
+*.tsx linguist-detectable=true
+*.py linguist-detectable=true
+*.ls linguist-detectable=true
+*.coffee linguist-detectable=true
+Dockerfile linguist-detectable=true
+docker-compose.yml linguist-detectable=true
+webpack.config.js linguist-detectable=true
+
+*.min.js linguist-generated=true
+*.min.css linguist-generated=true

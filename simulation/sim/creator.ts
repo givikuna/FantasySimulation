@@ -3,8 +3,8 @@ import { dwarfStats } from "../data/stats/dwarfStats";
 import { elfStats } from "../data/stats/elfStats";
 import { humanStats } from "../data/stats/humanStats";
 import { orcStats } from "../data/stats/orcStats";
-import { baseStatistics } from "../types/blueprints";
-import { Gender, PersonStatistics, Race, RaceStatistics } from "../types/types";
+import { baseStatistics } from "../../types/blueprints";
+import { Gender, PersonStatistics, Race, RaceStatistics } from "../../types/types";
 import * as fs from "fs";
 
 const lastNames: string[] = fs.readFileSync("../data/names/lastNames.txt").toString().trim().split("\n");
