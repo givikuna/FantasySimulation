@@ -2,7 +2,11 @@ FROM node:22
 
 WORKDIR /usr/src/app
 
-COPY package*.json ./
+COPY ./package*.json ./
+
+COPY ./tsconfig.json ./
+
+COPY ./simulation ./
 
 RUN npm install
 
@@ -12,8 +16,6 @@ RUN npm install -g livescript
 
 RUN npm install -g coffeescript
 
-COPY . .
-
 EXPOSE 8080
 
-CMD ["node", "index.js"]
+CMD ["ts-node", "simulate.js"]

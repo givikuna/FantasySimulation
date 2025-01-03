@@ -17,7 +17,7 @@ export type Statistic =
     | "trusting"
     | "strength"
     | "beauty"
-    | "spiteful"
+    | "spite"
     | "confidence"
     | "violence"
     | "jealousy"
@@ -26,7 +26,7 @@ export type Statistic =
     | "pride"
     | "lifeSpan";
 
-export type StatisticsFormat = {Statistic: Primitive};
+export type StatisticsFormat = { Statistic: Primitive };
 
 //
 
@@ -35,7 +35,7 @@ export interface RaceStatistics {
     trusting: number;
     strength: number;
     beauty: number;
-    spiteful: number;
+    spite: number;
     confidence: number;
     violence: number;
     jealousy: number;

@@ -1,4 +1,4 @@
-import { Gender, PersonStatistics, PersonData, Race, Location } from '../../types/types';
+import { Gender, PersonStatistics, PersonData, Race, Location } from "../../types/types";
 
 export class Person {
     #id: string;
