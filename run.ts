@@ -8,7 +8,6 @@ import { execSync } from "./lib/System";
 import { SimulationData } from "./types/simulationData";
 
 const containerID: string = execSync(`docker ps -q --filter="STATUS=running"`).trim();
-const containerIP: string = execSync(`docker exec ${containerID} sh -c "hostname --ip-address"`).trim();
 
 const simData: SimulationData = {
     containerID: containerID,
@@ -27,5 +26,5 @@ fs.writeFileSync(
 );
 
 setInterval(async () => {
-    await watch(containerID, containerIP);
+    await watch(containerID);
 }, 1000);

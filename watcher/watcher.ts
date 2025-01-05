@@ -1,4 +1,5 @@
 import * as fs from "fs";
+import * as path from "path";
 
 import { PersonStatistics, Statistic } from "../types/types";
 import { SimulationState } from "../types/state";
@@ -13,13 +14,13 @@ function matchingStats(currentStats: PersonStatistics, newStats: PersonStatistic
     return true;
 }
 
-export async function watch(id: string, ip: string): Promise<void> {
+export async function watch(id: string): Promise<void> {
     try {
-        const response: Response = await fetch(`${ip}:8080/?`);
+        const response: Response = await fetch(`http://localhost:8080/?`);
         const newState: SimulationState = JSON.parse(await response.text()) as SimulationState;
 
         const currentStateString: string = String(
-            fs.readFileSync("../database/LatestState.json", "utf-8"),
+            fs.readFileSync(path.join(__dirname, "../database/latestState.json"), "utf-8"),
         ).trim();
 
         let flag: boolean = false;
@@ -47,7 +48,7 @@ export async function watch(id: string, ip: string): Promise<void> {
         }
 
         if (flag) {
-            fs.writeFileSync("../database/latestState.json", String(newState));
+            fs.writeFileSync(path.join(__dirname, "../database/latestState.json"), String(newState));
         }
     } catch (e: unknown) {
         console.error(`Error fetching data from the container ${id}:`, e);
