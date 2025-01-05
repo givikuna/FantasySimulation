@@ -1,13 +1,31 @@
 version: '3.8'
-
 services:
-  app:
+  app1:
     build:
       context: .
-    volumes:
-      - .:/usr/src/app
-      - /usr/src/app/node_modules
+    stdin_open: false
+    tty: true
     ports:
       - "8080:8080"
+    environment:
+      - NODE_ENV= production
+  app2:
+    build:
+      context: .
     stdin_open: true
     tty: true
+    command: node ./simulation/simulate
+
+#version: '3.8'
+
+#services:
+#  app:
+#    build:
+#      context: .
+#    volumes:
+#      - .:/usr/src/app
+#      - /usr/src/app/node_modules
+#    ports:
+#      - "8080:8080"
+#    stdin_open: true
+#    tty: true

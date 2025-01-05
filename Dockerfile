@@ -8,6 +8,8 @@ COPY ./tsconfig.json ./
 
 COPY ./pm2.config.js ./
 
+COPY ./processSplitter.sh ./
+
 COPY ./simulation ./simulation
 
 COPY ./types ./types
@@ -22,10 +24,20 @@ RUN npm install -g typescript
 
 RUN npm install -g pm2
 
+RUN chmod +x ./processSplitter.sh
+
 RUN tsc
 
 EXPOSE 8080:8080
 
+ENTRYPOINT ["./processSplitter.sh"]
+
+CMD [ "./processSplitter.sh" ]
+
 # CMD ["sh", "-c", "find . | sed 's/[^\\/]*\\// |/g; s/^ / |-/'"]
 
-CMD [ "pm2-runtime", "start", "pm2.config.js" ]
+# CMD sh -c "pm2-runtime start pm2.config.js & node ./simulation/simulate"
+
+# CMD ["pm2-runtime start pm2.config.js & ts-node ./simulation/simulate"]
+
+# CMD ["sh", "-c", "pm2-runtime start pm2.config.js & node ./simulation/simulate"]
