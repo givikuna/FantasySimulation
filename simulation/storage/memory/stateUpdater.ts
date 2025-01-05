@@ -1,13 +1,16 @@
 import * as fs from "fs";
+import * as path from "path";
 
 import { SimulationState } from "../../../types/state";
 
 export function updateState(newState: SimulationState): boolean {
     try {
-        const formerState: string = String(fs.readFileSync("./currentState.json", "utf16le"));
+        const formerState: string = String(
+            fs.readFileSync(path.join(__dirname, "currentState.json"), "utf-8"),
+        );
 
-        fs.writeFileSync("./lastState.json", formerState);
-        fs.writeFileSync("./currentState.json", JSON.stringify(newState));
+        fs.writeFileSync(path.join(__dirname, "lastState.json"), formerState);
+        fs.writeFileSync(path.join(__dirname, "currentState.json"), JSON.stringify(newState));
 
         return true;
     } catch (e: unknown) {

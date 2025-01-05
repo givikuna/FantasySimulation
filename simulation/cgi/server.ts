@@ -1,5 +1,6 @@
 import * as express from "express";
 import * as fs from "fs";
+import * as path from "path";
 
 import { SimulationState } from "../../types/state";
 
@@ -12,13 +13,15 @@ app.get("/", async (req: express.Request, res: express.Response): Promise<void> 
         }
 
         const currentState: SimulationState = JSON.parse(
-            String(fs.readFileSync("../storage/memory/currentState.json", "utf16le")),
+            String(fs.readFileSync(path.join(__dirname, "../storage/memory/currentState.json"), "utf-8")),
         );
 
-        res.send(String(currentState));
+        res.write(String(currentState));
+        res.end();
     } catch (e: unknown) {
         console.error(e);
         res.write("");
+        res.end();
     }
 }).listen(8080, (): void => {
     console.log(`Server is running on http://localhost:${8080}/`);

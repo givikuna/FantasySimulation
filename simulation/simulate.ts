@@ -1,4 +1,5 @@
 import * as fs from "fs";
+import * as path from "path";
 
 import { Person } from "./classes/Person";
 
@@ -29,7 +30,7 @@ for (let i: number = 0; i < people.length; i++) {
     currentState.persons[people[i].getID()] = people[i].jsonify() as PersonData;
 }
 
-fs.writeFileSync("./storage/memory/currentState.json", JSON.stringify(currentState));
+fs.writeFileSync(path.join(__dirname, "storage/memory/currentState.json"), JSON.stringify(currentState));
 
 while (String(input("Next step? ")) !== "n") {
     nextStep();

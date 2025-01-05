@@ -18,25 +18,31 @@ export async function watch(id: string, ip: string): Promise<void> {
         const response: Response = await fetch(`${ip}:8080/?`);
         const newState: SimulationState = JSON.parse(await response.text()) as SimulationState;
 
-        const currentState: SimulationState = JSON.parse(
-            String(fs.readFileSync("../database/LatestState.json", "utf16le")),
-        );
+        const currentStateString: string = String(
+            fs.readFileSync("../database/LatestState.json", "utf-8"),
+        ).trim();
 
         let flag: boolean = false;
 
-        const peopleIDs: string[] = Object.keys(newState.persons);
-        for (let i: number = 0; i < peopleIDs.length; i++) {
-            const currentID: string = peopleIDs[i];
-            if (
-                currentState.persons[currentID].age !== newState.persons[currentID].age ||
-                currentState.persons[currentID].gender !== newState.persons[currentID].gender ||
-                currentState.persons[currentID].name !== newState.persons[currentID].name ||
-                !matchingStats(
-                    currentState.persons[currentID].statistics,
-                    newState.persons[currentID].statistics,
-                )
-            ) {
-                flag = true;
+        if (currentStateString == "" || currentStateString.length < 10) {
+            flag = true;
+        } else {
+            const currentState: SimulationState = JSON.parse(currentStateString) as SimulationState;
+            const peopleIDs: string[] = Object.keys(newState.persons);
+
+            for (let i: number = 0; i < peopleIDs.length; i++) {
+                const currentID: string = peopleIDs[i];
+                if (
+                    currentState.persons[currentID].age !== newState.persons[currentID].age ||
+                    currentState.persons[currentID].gender !== newState.persons[currentID].gender ||
+                    currentState.persons[currentID].name !== newState.persons[currentID].name ||
+                    !matchingStats(
+                        currentState.persons[currentID].statistics,
+                        newState.persons[currentID].statistics,
+                    )
+                ) {
+                    flag = true;
+                }
             }
         }
 
@@ -44,6 +50,6 @@ export async function watch(id: string, ip: string): Promise<void> {
             fs.writeFileSync("../database/latestState.json", String(newState));
         }
     } catch (e: unknown) {
-        console.error(`Error fetching data from the container:${id}`, e);
+        console.error(`Error fetching data from the container ${id}:`, e);
     }
 }

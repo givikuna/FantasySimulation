@@ -1,9 +1,11 @@
 # configs
 .vscode
 node_modules
-runner.js
-watcher/water.js
-simulationManagement/newId.js
+
+# compiled files
+./runner.js
+./watcher/water.js
+./simulationManagement/newId.js
 types/state.js
 types/types.js
 types/bases.js

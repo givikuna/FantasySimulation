@@ -1,46 +1,32 @@
-import * as Docker from "dockerode";
+import * as process from "process";
 import * as fs from "fs";
+import * as path from "path";
 
 import { watch } from "./watcher/watcher";
 import { newSimulationId } from "./simulationManagement/newId";
+import { exec } from "./lib/System";
+
 import { SimulationData } from "./types/simulationData";
 
-const docker: Docker = new Docker();
+const containerID: string = exec(`docker ps -q --filter="STATUS=running"`);
+const containerIP: string = exec(`docker exec ${containerID} sh -c "hostname --ip-address"`);
 
-const containerData: { id: string; ip: string } = { id: "", ip: "" };
+const simData: SimulationData = {
+    containerID: containerID,
+    processID: process.pid,
+    simulationID: newSimulationId(),
+};
 
-const simID: string = newSimulationId();
+fs.writeFileSync(
+    path.join(__dirname, "database/simulationRunningLogs.json"),
+    JSON.stringify([
+        ...(JSON.parse(
+            fs.readFileSync(path.join(__dirname, "database/simulationRunningLogs.json"), "utf-8").toString(),
+        ) as SimulationData[]),
+        simData,
+    ]),
+);
 
-docker
-    .createContainer({ Image: "fantasy-sim", name: `Simulation${newSimulationId()}` })
-    .then(async (container: Docker.Container): Promise<Docker.Container> => {
-        return await container.start();
-    })
-    .then(async (container: Docker.Container): Promise<void> => {
-        console.log("Container started");
-        containerData.id = container.id;
-        containerData.ip = (await container.inspect()).NetworkSettings.IPAddress;
-
-        fs.writeFileSync(
-            "./database/simulationRunningLogs.json",
-            JSON.stringify([
-                ...(JSON.parse(
-                    fs.readFileSync("./database/simulationRunningLogs.json", "utf16le").toString(),
-                ) as SimulationData[]),
-                {
-                    simulationID: simID,
-                    containerID: containerData.id,
-                    processID: process.pid,
-                },
-            ] satisfies SimulationData[]),
-        );
-
-        docker.getContainer("").kill();
-
-        setInterval(async () => {
-            await watch(containerData.id, containerData.ip);
-        }, 1000);
-    })
-    .catch((e: unknown): void => {
-        console.log(`Error with container ${containerData.id}`, e);
-    });
+setInterval(async () => {
+    await watch(containerID, containerIP);
+}, 1000);

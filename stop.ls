@@ -1,16 +1,15 @@
 require! {
     fs: fs
-    dockerode: Docker
-    'prelude-ls': { last, map }
+    'prelude-ls': { last }
     './lib/System': { exec }
     process: process
 }
 
-
-( fs.read-file-sync './database/simulationRunningLogs.json' \utf16le )
+fs
+    |> (.read-file-sync)
+    |> --> it './database/simulationRunningLogs.json' \utf-8
+    |> JSON.parse
     |> last
-    |> --> [it.containerID, it.processID]
-    |> --> [(it[0]
-        |> (new Docker!).get-container
-        |> (.kill!)),
-        process.kill(it[1])]
+    |> (.processID)
+    |> process.kill
+    |> --> exec 'docker kill $(docker ps -qf expose=8080)'

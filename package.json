@@ -15,9 +15,9 @@
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
-    "build": "sudo python3 builder.py && npm run start",
+    "build": "python3 builder.py && npm run start",
     "start": "./run.sh",
-    "stop": "./stop.sh",
+    "stop": "lsc stop",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
@@ -35,6 +35,7 @@
   },
   "devDependencies": {
     "@types/express": "^5.0.0",
+    "pm2": "^5.4.3",
     "ts-node": "^10.9.2",
     "typescript": "^5.7.2"
   }

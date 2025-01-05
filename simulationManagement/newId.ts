@@ -1,4 +1,5 @@
 import * as fs from "fs";
+import * as path from "path";
 
 function increment(id: string): string {
     const match: RegExpExecArray = id.match(/^([A-Z]+)(\d+)([A-Z]+)$/) as RegExpExecArray;
@@ -38,8 +39,8 @@ function incrementLetters(letters: string): string {
 }
 
 export function newSimulationId(): string {
-    const currentID: string = String(fs.readFileSync("./simid.txt", "utf16le")).trim();
+    const currentID: string = String(fs.readFileSync(path.join(__dirname, "simID.txt"), "utf-8")).trim();
     const newID: string = increment(currentID);
-    fs.writeFileSync("./simid.txt", newID);
+    fs.writeFileSync(path.join(__dirname, "simID.txt"), newID);
     return newID;
 }
