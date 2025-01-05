@@ -2,8 +2,6 @@
 
 This document outlines the standard formats for the project.
 
-<br>
-
 ## Importing
 
 ### General Guidelines
