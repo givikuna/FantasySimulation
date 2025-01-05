@@ -1,4 +1,5 @@
 export type SimulationData = {
-    id: string;
-    containerID: string[];
+    simulationID: string;
+    containerID: string;
+    processID: number;
 };

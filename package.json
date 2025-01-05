@@ -15,8 +15,9 @@
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
-    "build": "sudo chmod +x ./runner.sh && sudo docker build --tag fantasy-sim .",
-    "run": "./runner",
+    "build": "sudo python3 builder.py && npm run start",
+    "start": "./run.sh",
+    "stop": "./stop.sh",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
@@ -27,6 +28,7 @@
     "express": "^4.21.2",
     "fs": "^0.0.1-security",
     "http": "^0.0.1-security",
+    "livescript": "^1.6.0",
     "readline-sync": "^1.4.10",
     "type-fest": "^4.31.0",
     "url": "^0.11.4"

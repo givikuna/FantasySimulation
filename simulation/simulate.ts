@@ -16,7 +16,7 @@ import { races } from "../types/bases";
 const people: Person[] = [...races].map((race: Race): Person => createPerson({ id: newId(), race: race }));
 
 const currentState: SimulationState = {
-    persons: people.map((person: Person): PersonData => person.jsonify()),
+    persons: {},
     buildings: [
         {
             buildingType: "lounge",
@@ -24,6 +24,10 @@ const currentState: SimulationState = {
         },
     ],
 };
+
+for (let i: number = 0; i < people.length; i++) {
+    currentState.persons[people[i].getID()] = people[i].jsonify() as PersonData;
+}
 
 fs.writeFileSync("./storage/memory/currentState.json", JSON.stringify(currentState));
 
