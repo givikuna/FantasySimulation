@@ -5,7 +5,7 @@ export const baseStatistics: RaceStatistics = {
     trusting: 0,
     strength: 0,
     beauty: 0,
-    spiteful: 0,
+    spite: 0,
     confidence: 0,
     violence: 0,
     jealousy: 0,

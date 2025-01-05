@@ -1,0 +1,103 @@
+{
+    "persons": {
+        "0000018": {
+            "id": "0000018",
+            "name": "Iorgil Damo",
+            "race": "Elf",
+            "gender": "F",
+            "age": 0,
+            "statistics": {
+                "intelligence": 87.46435786160404,
+                "trusting": 62.73868085914765,
+                "strength": 50.25803187633597,
+                "beauty": 95.19572252592664,
+                "spite": 25.25699644407799,
+                "confidence": 87.13035395934753,
+                "violence": 44.31615460660612,
+                "jealousy": 53.63181084460462,
+                "charisma": 96.79306197424232,
+                "ambition": 56.51883948545838,
+                "pride": 81.05975915957147,
+                "endurance": 62.756325404080016,
+                "lifeSpan": 1002.7535466311056
+            }
+        },
+        "0000019": {
+            "id": "0000019",
+            "name": "Aoi Kadono",
+            "race": "Orc",
+            "gender": "F",
+            "age": 0,
+            "statistics": {
+                "intelligence": 36.9620414107509,
+                "trusting": 30.021634317538158,
+                "strength": 89.4075053413349,
+                "beauty": 25.838582570654545,
+                "spite": 77.02423616730913,
+                "confidence": 58.6821439453084,
+                "violence": 72.90087498553193,
+                "jealousy": 63.15629861253759,
+                "charisma": 34.38055954816629,
+                "ambition": 66.16796419583615,
+                "endurance": 86.2949572100152,
+                "pride": 58.66014359117343,
+                "lifeSpan": 57.644504770905016
+            }
+        },
+        "0000020": {
+            "id": "0000020",
+            "name": "Bob Fröhlich",
+            "race": "Human",
+            "gender": "M",
+            "age": 0,
+            "statistics": {
+                "intelligence": 74.11248572086102,
+                "trusting": 57.53255118591318,
+                "strength": 57.51852135654668,
+                "beauty": 42.99501773240915,
+                "spite": 43.933406387414365,
+                "confidence": 62.60658131501915,
+                "violence": 45.76957132232597,
+                "jealousy": 66.0246745102231,
+                "charisma": 63.35882100780994,
+                "ambition": 82.23917866074338,
+                "endurance": 65.9748125465413,
+                "pride": 58.14698211450934,
+                "lifeSpan": 76.10996534686791
+            }
+        },
+        "0000021": {
+            "id": "0000021",
+            "name": "Alex Remarque",
+            "race": "Dwarf",
+            "gender": "F",
+            "age": 0,
+            "statistics": {
+                "intelligence": 63.00901093250687,
+                "trusting": 75.78342141008203,
+                "strength": 56.704345489627755,
+                "beauty": 31.137685007081874,
+                "spite": 56.83462620279013,
+                "confidence": 64.24639876374826,
+                "violence": 76.97159708460951,
+                "jealousy": 32.32077992857404,
+                "charisma": 35.32371335220996,
+                "ambition": 60.73513274645962,
+                "endurance": 91.68082366787384,
+                "pride": 69.00377941479029,
+                "lifeSpan": 195.4951131081569
+            }
+        }
+    },
+    "buildings": [
+        {
+            "buildingType": "lounge",
+            "buildingLocation": [
+                [
+                    0,
+                    0
+                ]
+            ]
+        }
+    ]
+}

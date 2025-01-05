@@ -6,16 +6,38 @@ COPY ./package*.json ./
 
 COPY ./tsconfig.json ./
 
-COPY ./simulation ./
+COPY ./pm2.config.js ./
+
+COPY ./processSplitter.sh ./
+
+COPY ./simulation ./simulation
+
+COPY ./types ./types
+
+COPY ./lib ./lib
 
 RUN npm install
 
 RUN npm install -g ts-node
 
-RUN npm install -g livescript
+RUN npm install -g typescript
 
-RUN npm install -g coffeescript
+RUN npm install -g pm2
 
-EXPOSE 8080
+RUN chmod +x ./processSplitter.sh
 
-CMD ["ts-node", "simulate.js"]
+RUN tsc
+
+EXPOSE 8080:8080
+
+ENTRYPOINT ["./processSplitter.sh"]
+
+CMD [ "./processSplitter.sh" ]
+
+# CMD ["sh", "-c", "find . | sed 's/[^\\/]*\\// |/g; s/^ / |-/'"]
+
+# CMD sh -c "pm2-runtime start pm2.config.js & node ./simulation/simulate"
+
+# CMD ["pm2-runtime start pm2.config.js & ts-node ./simulation/simulate"]
+
+# CMD ["sh", "-c", "pm2-runtime start pm2.config.js & node ./simulation/simulate"]
