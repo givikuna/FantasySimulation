@@ -1,11 +1,14 @@
+import * as fs from "fs";
+
 import { Person } from "../classes/Person";
+
+import { Gender, PersonData, PersonStatistics, Race, RaceStatistics } from "../../types/types";
+
 import { dwarfStats } from "../data/stats/dwarfStats";
 import { elfStats } from "../data/stats/elfStats";
 import { humanStats } from "../data/stats/humanStats";
 import { orcStats } from "../data/stats/orcStats";
 import { baseStatistics } from "../../types/blueprints";
-import { Gender, PersonStatistics, Race, RaceStatistics } from "../../types/types";
-import * as fs from "fs";
 
 const lastNames: string[] = fs.readFileSync("../data/names/lastNames.txt").toString().trim().split("\n");
 const femaleFirstNames: string[] = fs
@@ -19,13 +22,17 @@ const maleFirstNames: string[] = fs
     .trim()
     .split("\n");
 
-export function createPerson(stats: {
-    id: string;
-    name?: string | undefined;
-    race: Race;
-    gender?: Gender | undefined;
-    statistics?: PersonStatistics | undefined;
-}): Person {
+export function createPerson(
+    stats:
+        | PersonData
+        | {
+              id: string;
+              name?: string | undefined;
+              race: Race;
+              gender?: Gender | undefined;
+              statistics?: PersonStatistics | undefined;
+          },
+): Person {
     const gender: Gender =
         stats?.gender != undefined
             ? stats.gender

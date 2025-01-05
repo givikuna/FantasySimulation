@@ -8,6 +8,8 @@ COPY ./tsconfig.json ./
 
 COPY ./simulation ./
 
+COPY ./types ./
+
 RUN npm install
 
 RUN npm install -g ts-node

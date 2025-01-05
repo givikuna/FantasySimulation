@@ -21,6 +21,7 @@
         "noImplicitThis": true,
         "noImplicitOverride": true,
         "strictBindCallApply": true,
-        "noFallthroughCasesInSwitch": true
+        "noFallthroughCasesInSwitch": true,
+        "resolveJsonModule": true,
     }
 }

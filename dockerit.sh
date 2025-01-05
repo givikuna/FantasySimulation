@@ -1,4 +1,2 @@
-sudo docker build --tag fantasy_sim .
-echo "Current Docker images:"
-sudo docker ps -a
-sudo docker run -it fantasy_sim
+sudo docker build --tag fantasy-sim .
+sudo docker run -p 8080:8080 fantasy-sim

@@ -84,6 +84,10 @@ export class Person {
         this.#location = newLocation;
     }
 
+    ageUp(): void {
+        this.setAge(this.getAge() + 1);
+    }
+
     jsonify(): PersonData {
         return {
             id: this.getID(),

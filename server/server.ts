@@ -1,21 +1,21 @@
 import * as express from "express";
 import * as url from "url";
+import * as fs from "fs";
 
 import { ParsedUrlQuery } from "querystring";
+import { SimulationState } from "../types/state";
 
 const port: number = 8081;
 
 const app: express.Application = express();
 
-app.get("/", (req: express.Request, res: express.Response): void => {
+app.get("/", async (req: express.Request, res: express.Response): Promise<void> => {
     try {
         if (!req.url) {
             res.write("");
         }
 
         const url_info: Readonly<ParsedUrlQuery> = url.parse(req.url as string, true).query;
-
-        console.log(url_info);
     } catch (e: unknown) {
         console.error(e);
         res.write("");
