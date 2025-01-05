@@ -20,3 +20,4 @@ simulation/data/stats/elfStats.js
 simulation/data/stats/humanStats.js
 simulation/classes/Person.js
 simulation/cgi/server.js
+simulation/storage/memory/stateUpdater.js

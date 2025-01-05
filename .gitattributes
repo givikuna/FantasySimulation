@@ -1,8 +1,9 @@
 *.sql linguist-detectable=true
 *.md linguist-detectable=true
 *.json linguist-detectable=false
-*.jsonc linguist-detectable=true
+*.jsonc linguist-detectable=false
 *.tson linguist-detectable=true
+*.py linguist-detectable=true
 *.yml linguist-detectable=true
 *.js linguist-detectable=true
 *.sh linguist-detectable=true

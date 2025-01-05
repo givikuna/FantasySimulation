@@ -5,6 +5,7 @@ import * as path from "path";
 import { watch } from "./watcher/watcher";
 import { newSimulationId } from "./simulationManagement/newId";
 import { execSync } from "./lib/System";
+
 import { SimulationData } from "./types/simulationData";
 
 const containerID: string = execSync(`docker ps -q --filter="STATUS=running"`).trim();
