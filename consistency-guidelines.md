@@ -8,13 +8,13 @@ This document outlines the standard formats for the project.
 
 1. **Import Order**:
    - **Modules**: Import entire modules first using the `import * as` syntax.
+   - **Classes**: Import specific classes after the modules.
    - **Functions**: Import specific functions using destructuring.
-   - **Classes**: Import specific classes after functions.
-   - **Data**: Import specific data after classes.
-   - **Types**: Import types last.
+   - **Types**: Import specific types after functions.
+   - **Data**: Import data last.
 
 1. **Separation**:
-   - Use a single empty line to separate each group of imports (Modules, Functions, Classes, Types).
+   - Use a single empty line to separate each group of imports (Modules, Classes, Functions, Types, Data).
 
 1. **Syntax**:
    - Modules:
@@ -35,17 +35,17 @@ Below is an example demonstrating the proper order and formatting of imports:
 import * as fs from "fs";
 import * as path from "path";
 
-// Import functions
-import { function1, function2 } from "./functions";
-
 // Import classes
 import { Person, Building, Event } from "./classes";
 
-// Import Data
-import { OrcStats } from "./data"
+// Import functions
+import { function1, function2 } from "./functions";
 
 // Import types
 import { Race, PersonData } from "./types";
+
+// Import Data
+import { OrcStats } from "./data"
 ```
 
 <br>
