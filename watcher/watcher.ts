@@ -17,7 +17,7 @@ function matchingStats(currentStats: PersonStatistics, newStats: PersonStatistic
 export async function watch(id: string): Promise<void> {
     try {
         const response: Response = await fetch(`http://localhost:8080/?`);
-        const newState: SimulationState = JSON.parse(await response.text()) as SimulationState;
+        const newState: SimulationState = JSON.parse(String(await response.text())) as SimulationState;
 
         const currentStateString: string = String(
             fs.readFileSync(path.join(__dirname, "../database/latestState.json"), "utf-8"),
@@ -48,7 +48,7 @@ export async function watch(id: string): Promise<void> {
         }
 
         if (flag) {
-            fs.writeFileSync(path.join(__dirname, "../database/latestState.json"), String(newState));
+            fs.writeFileSync(path.join(__dirname, "../database/latestState.json"), JSON.stringify(newState));
         }
     } catch (e: unknown) {
         console.error(`Error fetching data from the container ${id}:`, e);
