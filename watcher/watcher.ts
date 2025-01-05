@@ -24,7 +24,7 @@ export async function watch(id: string, ip: string): Promise<void> {
 
         let flag: boolean = false;
 
-        if (currentStateString == "" || currentStateString.length < 10) {
+        if (currentStateString == "" || currentStateString.length < 20) {
             flag = true;
         } else {
             const currentState: SimulationState = JSON.parse(currentStateString) as SimulationState;

@@ -4,12 +4,11 @@ import * as path from "path";
 
 import { watch } from "./watcher/watcher";
 import { newSimulationId } from "./simulationManagement/newId";
-import { exec } from "./lib/System";
-
+import { execSync } from "./lib/System";
 import { SimulationData } from "./types/simulationData";
 
-const containerID: string = exec(`docker ps -q --filter="STATUS=running"`);
-const containerIP: string = exec(`docker exec ${containerID} sh -c "hostname --ip-address"`);
+const containerID: string = execSync(`docker ps -q --filter="STATUS=running"`).trim();
+const containerIP: string = execSync(`docker exec ${containerID} sh -c "hostname --ip-address"`).trim();
 
 const simData: SimulationData = {
     containerID: containerID,
