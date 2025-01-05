@@ -1,8 +1,7 @@
-import { Person } from "../simulation/classes/Person";
-import { createPerson } from "../simulation/sim/creator";
-import { SimulationState } from "../types/state";
-import { PersonData, PersonStatistics, Statistic } from "../types/types";
 import * as fs from "fs";
+
+import { PersonStatistics, Statistic } from "../types/types";
+import { SimulationState } from "../types/state";
 
 function matchingStats(currentStats: PersonStatistics, newStats: PersonStatistics): boolean {
     const stats: Statistic[] = Object.keys(currentStats) as Statistic[];

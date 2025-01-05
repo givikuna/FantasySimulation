@@ -38,7 +38,7 @@ function incrementLetters(letters: string): string {
 }
 
 export function newSimulationId(): string {
-    const currentID: string = String(fs.readFileSync("./simid.txt", "utf16le"));
+    const currentID: string = String(fs.readFileSync("./simid.txt", "utf16le")).trim();
     const newID: string = increment(currentID);
     fs.writeFileSync("./simid.txt", newID);
     return newID;

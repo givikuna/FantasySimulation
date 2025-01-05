@@ -15,8 +15,8 @@
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
-    "docker:start": "docker-compose up",
-    "docker:stop": "docker-compose down",
+    "build": "sudo chmod +x ./runner.sh && sudo docker build --tag fantasy-sim .",
+    "run": "./runner",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
