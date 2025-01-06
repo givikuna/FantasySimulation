@@ -27,5 +27,7 @@ fs.writeFileSync(
 );
 
 setInterval(async () => {
-    await watch(containerID);
+    if (!(await watch(containerID))) {
+        process.kill(1);
+    }
 }, 1000);

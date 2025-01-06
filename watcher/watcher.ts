@@ -14,7 +14,7 @@ function matchingStats(currentStats: PersonStatistics, newStats: PersonStatistic
     return true;
 }
 
-export async function watch(id: string): Promise<void> {
+export async function watch(id: string): Promise<boolean> {
     try {
         const response: Response = await fetch(`http://localhost:8080/?`);
         const newState: SimulationState = JSON.parse(String(await response.text())) as SimulationState;
@@ -50,7 +50,10 @@ export async function watch(id: string): Promise<void> {
         if (flag) {
             fs.writeFileSync(path.join(__dirname, "../database/latestState.json"), JSON.stringify(newState));
         }
+
+        return true;
     } catch (e: unknown) {
         console.error(`Error fetching data from the container ${id}:`, e);
+        return false;
     }
 }
