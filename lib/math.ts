@@ -1,14 +1,33 @@
 import * as _ from "lodash";
 import * as mathjs from "mathjs";
 
+/**
+ * Converts an angle from radians to degrees.
+ *
+ * @param {number} rad - The angle in radians.
+ * @returns {number} - The angle in degrees.
+ */
 export function toDegrees(rad: number) {
     return (rad * 180) / Math.PI;
 }
 
+/**
+ * Converts an angle from degrees to radians.
+ *
+ * @param {number} deg - The angle in degrees.
+ * @returns {number} - The angle in radians.
+ */
 export function toRadians(deg: number) {
     return (deg * Math.PI) / 180;
 }
 
+/**
+ * Returns a sorted array of divisors of a number.
+ * Memoized for performance optimization.
+ *
+ * @param {number} n - The number to find divisors of.
+ * @returns {number[]} - A sorted array of divisors of the number.
+ */
 export const divisors: (n: number) => number[] = _.memoize((n: number): number[] => {
     const divisors: number[] = [];
 
@@ -21,18 +40,108 @@ export const divisors: (n: number) => number[] = _.memoize((n: number): number[]
     return _.chain(divisors).sort().value();
 });
 
-export const factorial: (n: number) => number = _.memoize((n: number): number => {
-    return n === 1 || n === 2 ? n : n * factorial(n);
-});
+/**
+ * Returns the factorial of a number.
+ * Memoized for performance optimization.
+ *
+ * @param {number} n - The number to calculate the factorial of.
+ * @returns {number} - The factorial of the number.
+ */
+export const factorial: (n: number) => number = _.memoize((n: number): number =>
+    n === 1 || n === 2 ? n : n * factorial(n),
+);
 
-export const fib: (n: number) => number = _.memoize((n: number): number => {
-    return n <= 1 ? 1 : fib(n - 1) + fib(n - 2);
-});
+/**
+ * Returns the nth Fibonacci number.
+ * Memoized for performance optimization.
+ *
+ * @param {number} n - The position in the Fibonacci sequence.
+ * @returns {number} - The nth Fibonacci number.
+ */
+export const fib: (n: number) => number = _.memoize((n: number): number =>
+    n <= 1 ? 1 : fib(n - 1) + fib(n - 2),
+);
 
-export const isPrime: (n: number) => boolean = _.memoize((n: number): boolean => {
-    return mathjs.isPrime(n);
-});
+/**
+ * Checks if a number is prime.
+ * Memoized for performance optimization.
+ *
+ * @param {number} n - The number to check.
+ * @returns {boolean} - True if the number is prime, otherwise false.
+ */
+export const isPrime: (n: number) => boolean = _.memoize((n: number): boolean => mathjs.isPrime(n));
 
-export const comb: (n: number, r: number | 1) => number = _.memoize((n: number, r: number = 1): number => {
-    return mathjs.combinations(n, r);
-});
+/**
+ * Calculates the number of combinations (n choose r).
+ * Memoized for performance optimization.
+ *
+ * @param {number} n - The total number of items.
+ * @param {number | 1} r - The number of items to choose (default is 1).
+ * @returns {number} - The number of combinations (n choose r).
+ */
+export const comb: (n: number, r: number | 1) => number = _.memoize((n: number, r: number = 1): number =>
+    mathjs.combinations(n, r),
+);
+
+/**
+ * Returns sign of a number (-1, 1)
+ *
+ * @param {number} n - number whose sign is to be determined
+ * @returns {number} - number
+ */
+export function signum(n: number): -1 | 1 {
+    return 0 > n ? -1 : 1;
+}
+
+/**
+ * Returns the square of a number.
+ * Memoized for performance optimization.
+ *
+ * @param {number} n - The number to square.
+ * @returns {number} - The square of the input number.
+ */
+export const square: (n: number) => number = _.memoize((n: number): number => n * n);
+
+/**
+ * Implements the Sieve of Eratosthenes algorithm to find all prime numbers up to a given limit.
+ *
+ * @param {number} n - The upper limit up to which primes should be found.
+ * @returns {number[]} - An array of prime numbers up to the limit.
+ */
+export function sieveOfEratosthenes(n: number): number[] {
+    const primes: boolean[] = new Array(n + 1).fill(true);
+
+    for (let i: number = 2; i <= Math.sqrt(n); ++i) {
+        if (primes[i]) {
+            for (let j: number = square(i); j <= n; j += i) {
+                primes[j] = false;
+            }
+        }
+    }
+
+    return primes.reduce((acc: number[], prime: boolean, i: number): number[] => {
+        if (prime) acc.push(i);
+        return acc;
+    }, []);
+}
+
+/**
+ * Checks if a number is a natural number (positive integer).
+ *
+ * @param {number} n - The number to check.
+ * @returns {boolean} - True if the number is a natural number, otherwise false.
+ */
+export function isNatural(n: number): boolean {
+    return n > 0 && Number.isInteger(n);
+}
+
+/**
+ * Returns the negation of a number.
+ * If the number is positive, returns its negative value. Otherwise, returns the number unchanged.
+ *
+ * @param {number} n - The number to negate.
+ * @returns {number} - The negated number.
+ */
+export function neg(n: number): number {
+    return 0 < n ? -n : n;
+}
