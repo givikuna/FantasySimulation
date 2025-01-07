@@ -4,7 +4,7 @@ import * as path from "path";
 
 import { watch } from "./watcher/watcher";
 import { newSimulationId } from "./simulationManagement/newId";
-import { execSync } from "./lib/System";
+import { execSync } from "./lib/system";
 
 import { SimulationData } from "./types/simulationData";
 

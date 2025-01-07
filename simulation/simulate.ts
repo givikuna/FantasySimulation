@@ -3,7 +3,7 @@ import * as path from "path";
 
 import { Person } from "./classes/Person";
 
-import { input } from "../lib/System";
+import { input } from "../lib/system";
 import { nextStep } from "./sim/nextStep";
 import { createPerson } from "./sim/creator";
 import { newId } from "./storage/id/newid";
