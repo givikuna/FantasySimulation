@@ -178,6 +178,39 @@ export function foldrf(f: (x: boolean, y: boolean) => boolean, xs: boolean[]): b
 }
 
 /**
+ * Folds (reduces) an array of strings from left to right, using an initial accumulator value of an empty string.
+ *
+ * @param {function} f - The binary function to apply. It takes two arguments: the accumulated value and the current string element.
+ * @param {string[]} xs - The array of strings to fold over.
+ * @returns {string} - The final accumulated result after folding over the array.
+ */
+export function foldstr(f: (x: string, y: string) => string, xs: string[]): string {
+    return fold(f, "", xs);
+}
+
+/**
+ * Folds (reduces) an array of strings from left to right, using an initial accumulator value of an empty string. Equivalent to `foldl`.
+ *
+ * @param {function} f - The binary function to apply. It takes two arguments: the accumulated value and the current string element.
+ * @param {string[]} xs - The array of strings to fold over.
+ * @returns {string} - The final accumulated result after folding over the array.
+ */
+export function foldlstr(f: (x: string, y: string) => string, xs: string[]): string {
+    return foldl(f, "", xs);
+}
+
+/**
+ * Folds (reduces) an array of strings from right to left, using an initial accumulator value of an empty string. Equivalent to `foldr`.
+ *
+ * @param {function} f - The binary function to apply. It takes two arguments: the accumulated value and the current string element.
+ * @param {string[]} xs - The array of strings to fold over.
+ * @returns {string} - The final accumulated result after folding over the array in reverse order.
+ */
+export function foldrstr(f: (x: string, y: string) => string, xs: string[]): string {
+    return foldr(f, "", xs);
+}
+
+/**
  * Calculates the frequency of a specific element in an array, optionally using a custom equality function.
  *
  * @param {T[]} xs - The array to search.
