@@ -177,14 +177,40 @@ export function foldrf(f: (x: boolean, y: boolean) => boolean, xs: boolean[]): b
     return foldr(f, false, xs);
 }
 
+/**
+ * Calculates the frequency of a specific element in an array, optionally using a custom equality function.
+ *
+ * @param {T[]} xs - The array to search.
+ * @param {T} k - The element to count in the array.
+ * @param {function} [eqF] - An optional custom equality function that takes two arguments and returns `true` if they are considered equal.
+ * @returns {number} - The number of occurrences of the element `k` in the array `xs`.
+ *
+ * @template T - The type of elements in the array.
+ */
 export function freq<T>(xs: T[], k: T, eqF?: (x: T, y: T) => boolean) {
     return xs.filter((x: T): boolean => (eqF == null || eqF == undefined ? x === k : eqF(x, k))).length;
 }
 
+/**
+ * Enumerates an array, pairing each element with its index.
+ *
+ * @param {T[]} xs - The array to enumerate.
+ * @returns {[number, T][]} - An array of tuples, where each tuple contains the index and the corresponding element from the input array.
+ *
+ * @template T - The type of elements in the array.
+ */
 export function enumerate<T>(xs: T[]): [number, T][] {
     return xs.map((x: T, i: number): [number, T] => [i, x]);
 }
 
+/**
+ * Checks if an array is empty.
+ *
+ * @param {T[]} xs - The array to check.
+ * @returns {boolean} - `true` if the array is empty, otherwise `false`.
+ *
+ * @template T - The type of elements in the array.
+ */
 export function Ø<T>(xs: T[]): boolean {
     return xs.length === 0;
 }
