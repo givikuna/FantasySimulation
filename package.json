@@ -25,7 +25,6 @@
     "@types/express": "^5.0.0",
     "@types/lodash": "^4.17.14",
     "@types/mathjs": "^9.4.1",
-    "@types/node": "^22.10.2",
     "@types/readline-sync": "^1.4.8",
     "dockerode": "^4.0.3",
     "express": "^4.21.2",
@@ -37,6 +36,7 @@
     "url": "^0.11.4"
   },
   "devDependencies": {
+    "@types/node": "^22.10.5",
     "livescript": "^1.6.0",
     "pm2": "^5.4.3",
     "ts-node": "^10.9.2",

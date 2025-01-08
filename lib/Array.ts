@@ -176,3 +176,15 @@ export function foldlf(f: (x: boolean, y: boolean) => boolean, xs: boolean[]): b
 export function foldrf(f: (x: boolean, y: boolean) => boolean, xs: boolean[]): boolean {
     return foldr(f, false, xs);
 }
+
+export function freq<T>(xs: T[], k: T, eqF?: (x: T, y: T) => boolean) {
+    return xs.filter((x: T): boolean => (eqF == null || eqF == undefined ? x === k : eqF(x, k))).length;
+}
+
+export function enumerate<T>(xs: T[]): [number, T][] {
+    return xs.map((x: T, i: number): [number, T] => [i, x]);
+}
+
+export function Ø<T>(xs: T[]): boolean {
+    return xs.length === 0;
+}
