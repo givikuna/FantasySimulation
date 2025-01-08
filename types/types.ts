@@ -23,7 +23,7 @@ export type Statistic =
     | "jealousy"
     | "charisma"
     | "endurance"
-    | "prideful"
+    | "pride"
     | "lifeSpan";
 
 export type StatisticsFormat = { Statistic: Primitive };

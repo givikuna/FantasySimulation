@@ -17,15 +17,15 @@ export class Person implements Rememberable {
     #logs: string;
 
     constructor(
-        id: ReturnType<typeof this.getName>,
-        name: ReturnType<typeof this.getName>,
-        race: ReturnType<typeof this.getRace>,
-        gender: ReturnType<typeof this.getGender>,
-        statistics: ReturnType<typeof this.getStatistics>,
-        age: ReturnType<typeof this.getAge> = 0,
-        location: ReturnType<typeof this.getLocation> = [0, 0],
-        memories: ReturnType<typeof this.getMemories> = new Map<Rememberable,Memory>(),
-        modifiers: ReturnType<typeof this.getModifiers> = [],
+        id: string,
+        name: string,
+        race: Race,
+        gender: Gender,
+        statistics: PersonStatistics,
+        age: number = 0,
+        location: Location = [0, 0],
+        memories: Map<Rememberable,Memory> = new Map<Rememberable,Memory>(),
+        modifiers: Modifier[] = [],
     ) {
         this.#id = id;
         this.#name = name;
@@ -39,42 +39,43 @@ export class Person implements Rememberable {
         this.#logs = "";
     }
 
-    getName(): string { return this.#name; }
-    getRace(): Race { return this.#race; }
-    getStatistics(): PersonStatistics { return this.#statistics; }
-    getAge(): number { return this.#age; }
-    getGender(): Gender { return this.#gender; }
-    getID(): string { return this.#id; }
-    getLocation(): Location { return this.#location; }
-    getMemories(): Map<Rememberable,Memory> { return this.#memories; }
-    getModifiers(): Modifier[] { return this.#modifiers; }
-    getLogs(): string { return this.#logs; }
+    get name(): string { return this.#name; }
+    get race(): Race { return this.#race; }
+    get statistics(): PersonStatistics { return this.#statistics; }
+    get age(): number {return this.#age; }
+    get gender(): Gender { return this.#gender; }
+    get id(): string { return this.#id; }
+    get location(): Location { return this.#location; }
+    get memories(): Map<Rememberable,Memory> { return this.#memories; }
+    get modifiers(): Modifier[] { return this.#modifiers; }
+    get logs(): string { return this.#logs; }
 
-    setName(newName: ReturnType<typeof this.getName>): void { this.#name = newName; }
-    setRace(newRace: ReturnType<typeof this.getRace>): void { this.#race = newRace; }
-    setStatistics(newStatistics: PersonStatistics) { this.#statistics = newStatistics; }
-    setAge(newAge: ReturnType<typeof this.getAge>): void { this.#age = newAge; }
-    setGender(newGender: ReturnType<typeof this.getGender>): void { this.#gender = newGender; }
-    setLocation(newLocation: ReturnType<typeof this.getLocation>): void { this.#location = newLocation; }
-    setModifiers(newModifiers: ReturnType<typeof this.getModifiers>): void { this.#modifiers = newModifiers; }
-    setMemories(newMemories: ReturnType<typeof this.getMemories>): void { this.#memories = newMemories; }
+    set name(new_name: string) { this.#name = new_name; }
+    set race(new_race: Race) { this.#race = new_race; }
+    set statistics(new_statistics: PersonStatistics) { this.#statistics = new_statistics; }
+    set age(new_age: number) { this.#age = new_age; }
+    set gender(new_gender: Gender) { this.#gender = new_gender; }
+    set location(new_location: Location) { this.#location = new_location; }
+    set memories(new_memories: Map<Rememberable,Memory>) { this.#memories = new_memories; }
+    set modifiers(new_modifiers: Modifier[]) { this.#modifiers = new_modifiers; }
+    set logs(new_logs) { this.#logs = new_logs; }
 
     changeStat(stat: keyof PersonStatistics, newValue: PersonStatistics[typeof stat]) {
         this.#statistics[stat] = newValue;
     }
 
     ageUp(): void {
-        this.setAge(this.getAge() + 1);
+        this.age = this.age + 1
     }
 
     jsonify(): PersonData {
         return {
-            id: this.getID(),
-            name: this.getName(),
-            race: this.getRace(),
-            gender: this.getGender(),
-            age: this.getAge(),
-            statistics: this.getStatistics(),
+            id: this.id,
+            name: this.name,
+            race: this.race,
+            gender: this.gender,
+            age: this.age,
+            statistics: this.statistics,
         };
     }
 }

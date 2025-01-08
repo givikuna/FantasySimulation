@@ -12,11 +12,11 @@ export class Memory {
         this.#perception = perception;
     }
 
-    getSubject(): Rememberable { return this.#subject; }
-    getAssociations(): Map<Rememberable,number> { return this.#associations; }
-    getPerception(): Perception { return this.#perception; }
+    get subject(): Rememberable { return this.#subject; }
+    get associations(): Map<Rememberable,number> { return this.#associations; }
+    get perception(): Perception { return this.#perception; }
 
-    setSubject(subject: Rememberable): void { this.#subject = subject; }
-    setAssociations(associations: Map<Rememberable,number>): void { this.#associations = associations; }
-    setPerception(perception: Perception): void { this.#perception = perception; }
+    set subject(new_subject: Rememberable) {this.#subject = new_subject; }
+    set associations(new_associations: Map<Rememberable,number>) {this.#associations = new_associations; }
+    set perception(new_perception: Perception) {this.#perception = new_perception; }
 }

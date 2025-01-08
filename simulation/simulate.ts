@@ -27,7 +27,7 @@ const currentState: SimulationState = {
 };
 
 for (let i: number = 0; i < people.length; i++) {
-    currentState.persons[people[i].getID()] = people[i].jsonify() as PersonData;
+    currentState.persons[people[i].id] = people[i].jsonify() as PersonData;
 }
 
 fs.writeFileSync(path.join(__dirname, "storage/memory/currentState.json"), JSON.stringify(currentState));

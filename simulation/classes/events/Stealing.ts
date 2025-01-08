@@ -1,3 +1,4 @@
+import { PersonStatistics } from "../../../types/types";
 import { Person } from "../Person";
 import { IEvent } from "./IEvent";
 
@@ -17,7 +18,14 @@ export class Stealing implements IEvent {
     }
 
     Noticed(guy: Person): void {
-        let stealing_index: number = 10;
+        let stats: PersonStatistics = guy.statistics;
+        let stealing_index: number = 
+            Math.random() * Math.pow(stats.jealousy, 3) +
+            Math.random() * Math.pow(stats.pride, 3)
+        
+        
+        
+            ;
         
 
     }
