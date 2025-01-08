@@ -23,7 +23,7 @@ export type Statistic =
     | "jealousy"
     | "charisma"
     | "endurance"
-    | "pride"
+    | "prideful"
     | "lifeSpan";
 
 export type StatisticsFormat = { Statistic: Primitive };
@@ -45,10 +45,19 @@ export interface RaceStatistics {
     pride: number;
     lifeSpan: number;
 }
+
+export interface ModifierStatistics {
+    impressionable: number;
+    status: number;
+    expensive: number;
+}
+
 export interface Building {
     buildingType: string;
     buildingLocation: ReadonlyArray<Location>;
 }
 
 export interface PersonStatistics extends RaceStatistics {}
-export interface Modifiers extends RaceStatistics {}
+
+export interface Rememberable {}
+export interface Perception extends RaceStatistics, ModifierStatistics {}
