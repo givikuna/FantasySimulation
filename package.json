@@ -26,6 +26,7 @@
     "@types/express": "^5.0.0",
     "@types/lodash": "^4.17.14",
     "@types/mathjs": "^9.4.1",
+    "@types/memoizee": "^0.4.11",
     "@types/readline-sync": "^1.4.8",
     "dockerode": "^4.0.3",
     "express": "^4.21.2",
@@ -33,6 +34,7 @@
     "http": "^0.0.1-security",
     "lodash": "^4.17.21",
     "mathjs": "^14.0.1",
+    "memoizee": "^0.4.17",
     "readline-sync": "^1.4.10",
     "url": "^0.11.4"
   },
@@ -40,10 +42,12 @@
     "@types/chai": "^5.0.1",
     "@types/mocha": "^10.0.10",
     "@types/node": "^22.10.5",
+    "@types/sinon": "^17.0.3",
     "chai": "^5.1.2",
     "livescript": "^1.6.0",
     "mocha": "^11.0.1",
     "pm2": "^5.4.3",
+    "sinon": "^19.0.2",
     "ts-node": "^10.9.2",
     "typescript": "^5.7.2"
   }

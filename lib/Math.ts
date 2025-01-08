@@ -48,7 +48,7 @@ export const divisors: (n: number) => number[] = _.memoize((n: number): number[]
  * @returns {number} - The factorial of the number.
  */
 export const factorial: (n: number) => number = _.memoize((n: number): number =>
-    n === 1 || n === 2 ? n : n * factorial(n),
+    n == 0 ? 1 : n === 1 || n === 2 ? n : n * factorial(n - 1),
 );
 
 /**
@@ -79,9 +79,8 @@ export const isPrime: (n: number) => boolean = _.memoize((n: number): boolean =>
  * @param {number | 1} r - The number of items to choose (default is 1).
  * @returns {number} - The number of combinations (n choose r).
  */
-export const comb: (n: number, r: number | 1) => number = _.memoize((n: number, r: number = 1): number =>
-    mathjs.combinations(n, r),
-);
+export const comb: (n: number, r: number | 1) => number = (n: number, r: number = 1): number =>
+    factorial(n) / (factorial(r) * factorial(n - r));
 
 /**
  * Returns sign of a number (-1, 1)
@@ -110,19 +109,24 @@ export const square: (n: number) => number = _.memoize((n: number): number => n 
  */
 export function sieveOfEratosthenes(n: number): number[] {
     const primes: boolean[] = new Array(n + 1).fill(true);
+    primes[0] = primes[1] = false;
 
-    for (let i: number = 2; i <= Math.sqrt(n); ++i) {
+    for (let i = 2; i * i <= n; i++) {
         if (primes[i]) {
-            for (let j: number = square(i); j <= n; j += i) {
+            for (let j = i * i; j <= n; j += i) {
                 primes[j] = false;
             }
         }
     }
 
-    return primes.reduce((acc: number[], prime: boolean, i: number): number[] => {
-        if (prime) acc.push(i);
-        return acc;
-    }, []);
+    const result: number[] = [];
+    for (let i = 2; i <= n; i++) {
+        if (primes[i]) {
+            result.push(i);
+        }
+    }
+
+    return result;
 }
 
 /**
