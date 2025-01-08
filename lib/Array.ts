@@ -161,7 +161,6 @@ export function foldf(f: (x: boolean, y: boolean) => boolean, xs: boolean[]): bo
  * @param {boolean[]} xs - The array of booleans to fold over.
  * @returns {boolean} - The final accumulated result after folding over the array.
  */
-
 export function foldlf(f: (x: boolean, y: boolean) => boolean, xs: boolean[]): boolean {
     return foldl(f, false, xs);
 }
