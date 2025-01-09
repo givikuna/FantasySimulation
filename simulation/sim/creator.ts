@@ -37,10 +37,10 @@ export function createPerson(
               modifiers?: Modifier[] | undefined;
           },
 ): Person {
-    const age: number = stats?.age != undefined ? stats.age : 0;
-    const memories: Map<Rememberable,Memory> = stats?.memories != undefined ? stats.memories : new Map<Rememberable,Memory>();
-    const modifiers: Modifier[] = stats?.modifiers != undefined ? stats.modifiers : [];
-
+    const age: number = stats?.age ?? 0;
+    const memories: Map<Rememberable, Memory> = stats?.memories ?? new Map<Rememberable, Memory>();
+    const modifiers: Modifier[] = stats?.modifiers ?? [];
+    
     const gender: Gender =
         stats?.gender != undefined
             ? stats.gender
