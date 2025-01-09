@@ -27,7 +27,7 @@ export class Stealing implements IEvent {
         
             ;
         
-
+        this.#discreteness = stealing_index; //for now cus dumb tsc doesnt like me not using thing
     }
 
     Finished(): void {

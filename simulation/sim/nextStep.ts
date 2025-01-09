@@ -1,4 +1,5 @@
 import * as path from "path";
+import * as fs from "fs"
 
 import { Person } from "../classes/Person";
 
@@ -6,17 +7,15 @@ import { createPerson } from "./creator";
 import { ageUp } from "./module/helper";
 import { updateState } from "../storage/memory/stateUpdater";
 
-import { PersonData } from "../../types/types";
-import { SimulationState } from "../../types/state";
+import { PersonData, SimulationState } from "../../types";
 
 export function nextStep(): void {
-    const currentState: SimulationState = require(path.join(
-        __dirname,
-        "../storage/memory/currentState.json",
-    )) as SimulationState;
+    const currentState: SimulationState = JSON.parse(
+        fs.readFileSync(path.join(__dirname, "../storage/memory/currentState.json"), "utf-8")
+    ) as SimulationState;
 
     const people: Person[] = Object.keys(currentState.persons).map(
-        (key: string): Person => createPerson(currentState.persons[key]),
+        (key: string): Person => createPerson(currentState.persons[key])
     );
     
     ageUp(people);

@@ -65,7 +65,7 @@ export class Person implements Rememberable {
     }
 
     ageUp(): void {
-        this.age = this.age + 1
+        this.age += 1
     }
 
     jsonify(): PersonData {
