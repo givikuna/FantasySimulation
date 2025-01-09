@@ -1,4 +1,4 @@
-import { RaceStatistics } from "../../../types/types";
+import { RaceStatistics } from "../../../types";
 
 export const elfStats: Readonly<RaceStatistics> = {
     intelligence: 90,

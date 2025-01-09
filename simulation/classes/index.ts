@@ -1,0 +1,5 @@
+export { Memory } from "./Memory"
+export { Modifier } from "./Modifier"
+export { Person } from "./Person"
+export { IEvent } from "./events/IEvent"
+export { ILocation } from "./locations/ILocation"

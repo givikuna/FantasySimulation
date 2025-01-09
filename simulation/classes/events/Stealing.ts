@@ -1,6 +1,6 @@
-import { PersonStatistics } from "../../../types/types";
-import { Person } from "../Person";
-import { IEvent } from "./IEvent";
+import { Person, IEvent } from "../";
+
+import { PersonStatistics } from "../../../types";
 
 export class Stealing implements IEvent {
     #discreteness: number;

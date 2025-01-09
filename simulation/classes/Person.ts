@@ -1,7 +1,6 @@
-import { Gender, PersonStatistics, PersonData, Race, Rememberable } from "../../types/types";
-import { ILocation } from "./locations/ILocation.ts";
-import { Memory } from "./Memory";
-import { Modifier } from "./Modifier";
+import { ILocation, Memory, Modifier } from ".";
+
+import { Gender, PersonStatistics, PersonData, Race, Rememberable } from "../../types";
 
 export class Person implements Rememberable {
     #id: string;

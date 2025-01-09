@@ -1,6 +1,6 @@
 import { ModifierStatistics, Perception, RaceStatistics } from "./types";
 
-export const baseStatistics: RaceStatistics = {
+export const basePersonStatistics: RaceStatistics = {
     intelligence: 0,
     trusting: 0,
     strength: 0,

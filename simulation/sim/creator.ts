@@ -1,18 +1,10 @@
 import * as fs from "fs";
 import * as path from "path";
 
-import { Person } from "../classes/Person";
-import { Memory } from "../classes/Memory";
-import { Modifier } from "../classes/Modifier";
-import { ILocation } from "../classes/locations/ILocation";
+import { Person, Memory, Modifier, ILocation } from "../classes";
 
-import { Gender, PersonData, PersonStatistics, Race, RaceStatistics, Rememberable } from "../../types/types";
-
-import { dwarfStats } from "../data/stats/dwarfStats";
-import { elfStats } from "../data/stats/elfStats";
-import { humanStats } from "../data/stats/humanStats";
-import { orcStats } from "../data/stats/orcStats";
-import { baseStatistics } from "../../types/blueprints";
+import { Gender, PersonData, PersonStatistics, Race, RaceStatistics, Rememberable, basePersonStatistics } from "../../types";
+import { dwarfStats, elfStats, humanStats, orcStats } from "../data";
 
 const lastNames: string[] = fs
     .readFileSync(path.join(__dirname, "../data/names/lastNames.txt"), "utf-8")
@@ -82,7 +74,7 @@ export function createPerson(
                               case "Orc":
                                   return orcStats;
                               default:
-                                  return baseStatistics;
+                                  return basePersonStatistics;
                           }
                       })(m_race),
                   };

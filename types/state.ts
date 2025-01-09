@@ -1,4 +1,4 @@
-import { ILocation } from "../simulation/classes/locations/ILocation";
+import { ILocation } from "../simulation/classes";
 import { PersonData } from "./types";
 
 export type SimulationState = {

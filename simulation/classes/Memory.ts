@@ -1,5 +1,4 @@
-import { Gender, PersonStatistics, PersonData, Race, Location, Rememberable, Perception } from "../../types/types";
-
+import { Rememberable, Perception } from "../../types";
 
 export class Memory {
     #subject : Rememberable;

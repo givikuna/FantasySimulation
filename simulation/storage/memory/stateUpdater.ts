@@ -1,7 +1,7 @@
 import * as fs from "fs";
 import * as path from "path";
 
-import { SimulationState } from "../../../types/state";
+import { SimulationState } from "../../../types";
 
 export function updateState(newState: SimulationState): boolean {
     try {

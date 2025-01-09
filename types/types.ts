@@ -1,8 +1,6 @@
 import { Primitive } from "type-fest";
-import { Memory } from "../simulation/classes/Memory";
-import { Modifier } from "../simulation/classes/Modifier";
-import { ILocation } from "../simulation/classes/locations/ILocation";
 
+import { Memory, Modifier, ILocation } from "../simulation/classes";
 
 export type PersonData = {
     id: string;

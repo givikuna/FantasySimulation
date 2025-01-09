@@ -1,20 +1,18 @@
 import * as fs from "fs";
 import * as path from "path";
 
-import { Person } from "./classes/Person";
+import { Person, ILocation } from "./classes";
 
 import { input } from "../lib/System";
 import { nextStep } from "./sim/nextStep";
 import { createPerson } from "./sim/creator";
 import { newId } from "./storage/id/newid";
-import { ILocation } from "./classes/locations/ILocation";
 
-import { PersonData, Race } from "../types/types";
-import { SimulationState } from "../types/state";
+import { PersonData, Race, SimulationState, races } from "../types";
 
-import { races } from "../types/bases";
-
+//this is here just so we can actually spawn people in, we gonna make an actual map later
 let placeholder: ILocation = {
+    people: [],
     locationType: "lounge",
     locationCoordinates: [[0, 0]],
 }
