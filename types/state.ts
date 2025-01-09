@@ -1,6 +1,7 @@
-import { Building, PersonData } from "./types";
+import { ILocation } from "../simulation/classes/locations/ILocation";
+import { PersonData } from "./types";
 
 export type SimulationState = {
     persons: { [id: string]: PersonData };
-    buildings: ReadonlyArray<Building>;
+    locations: ReadonlyArray<ILocation>;
 };

@@ -1,15 +1,22 @@
 import { Primitive } from "type-fest";
+import { Memory } from "../simulation/classes/Memory";
+import { Modifier } from "../simulation/classes/Modifier";
+import { ILocation } from "../simulation/classes/locations/ILocation";
+
 
 export type PersonData = {
     id: string;
     name: string;
     race: Race;
     gender: Gender;
-    age: number;
     statistics: PersonStatistics;
+    age: number;
+    location: ILocation;
+    memories: Map<Rememberable,Memory>;
+    modifiers: Modifier[];
 };
 
-export type Location = [number, number];
+export type Coordinates = [number, number];
 export type Gender = "M" | "F";
 export type Race = "Elf" | "Orc" | "Human" | "Dwarf";
 export type Statistic =
@@ -50,11 +57,6 @@ export interface ModifierStatistics {
     impressionable: number;
     status: number;
     expensive: number;
-}
-
-export interface Building {
-    buildingType: string;
-    buildingLocation: ReadonlyArray<Location>;
 }
 
 export interface PersonStatistics extends RaceStatistics {}

@@ -7,23 +7,24 @@ import { input } from "../lib/System";
 import { nextStep } from "./sim/nextStep";
 import { createPerson } from "./sim/creator";
 import { newId } from "./storage/id/newid";
+import { ILocation } from "./classes/locations/ILocation";
 
 import { PersonData, Race } from "../types/types";
 import { SimulationState } from "../types/state";
 
 import { races } from "../types/bases";
 
+let placeholder: ILocation = {
+    locationType: "lounge",
+    locationCoordinates: [[0, 0]],
+}
+
 // make one individual of each fantasy race
-const people: Person[] = [...races].map((race: Race): Person => createPerson({ id: newId(), race: race }));
+const people: Person[] = [...races].map((race: Race): Person => createPerson({ id: newId(), race: race, location: placeholder}));
 
 const currentState: SimulationState = {
     persons: {},
-    buildings: [
-        {
-            buildingType: "lounge",
-            buildingLocation: [[0, 0]],
-        },
-    ],
+    locations: [placeholder],
 };
 
 for (let i: number = 0; i < people.length; i++) {

@@ -14,22 +14,24 @@ export function nextStep(): void {
         __dirname,
         "../storage/memory/currentState.json",
     )) as SimulationState;
+
     const people: Person[] = Object.keys(currentState.persons).map(
         (key: string): Person => createPerson(currentState.persons[key]),
     );
+    
     ageUp(people);
 
     const newState: SimulationState = {
         persons: {},
-        buildings: currentState.buildings,
+        locations: currentState.locations,
     };
 
     for (let i: number = 0; i < people.length; i++) {
-        newState.persons[people[i].getID()] = people[i].jsonify() as PersonData;
+        newState.persons[people[i].id] = people[i].jsonify() as PersonData;
     }
 
     people.forEach((person: Person): void => {
-        console.log(`${person.getName()} is ${person.getAge()} years old. (${person.getID()})`);
+        console.log(`${person.name} is ${person.age} years old. (${person.id})`);
     });
 
     updateState(newState);
