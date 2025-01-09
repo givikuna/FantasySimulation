@@ -23,8 +23,5 @@
         "strictBindCallApply": true,
         "noFallthroughCasesInSwitch": true,
         "resolveJsonModule": true,
-    },
-    "include": [
-        "tests/**/*.ts"
-    ]
+    }
 }
