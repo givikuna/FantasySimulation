@@ -6,8 +6,10 @@ import { Person } from "../classes/Person";
 import { createPerson } from "./creator";
 import { ageUp } from "./module/helper";
 import { updateState } from "../storage/memory/stateUpdater";
+import { stage1 } from "./decision-making";
 
 import { PersonData, SimulationState } from "../../types";
+import { orcStats } from "../data";
 
 export function nextStep(): void {
     const currentState: SimulationState = JSON.parse(
@@ -19,6 +21,10 @@ export function nextStep(): void {
     );
     
     ageUp(people);
+
+    people.forEach(person => { stage1(person) });
+    
+    console.log(orcStats);
 
     const newState: SimulationState = {
         persons: {},
