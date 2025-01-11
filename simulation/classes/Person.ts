@@ -1,18 +1,18 @@
-import { ILocation, Memory, Modifier } from ".";
+import { Memory } from ".";
 
-import { Gender, PersonStatistics, PersonData, Race, Rememberable } from "../../types";
+import { Gender, PersonStatistics, PersonData, Race, Coordinates } from "../../types";
 
-export class Person implements Rememberable {
+export class Person {
     #id: string;
     #name: string;
     #race: Race;
     #gender: Gender;
     #age: number;
-    #location: ILocation;
+    #location: Coordinates;
 
     #statistics: PersonStatistics;
-    #memories: Map<Rememberable,Memory>;
-    #modifiers: Modifier[];
+    #memories: {[key: string]: Memory};
+    #modifiers: string[];
 
     #logs: string;
 
@@ -23,9 +23,9 @@ export class Person implements Rememberable {
         gender: Gender,
         statistics: PersonStatistics,
         age: number = 0,
-        location: ILocation,
-        memories: Map<Rememberable,Memory> = new Map<Rememberable,Memory>(),
-        modifiers: Modifier[] = [],
+        location: Coordinates,
+        memories: {[key: string]: Memory} = {},
+        modifiers: string[] = [],
     ) {
         this.#id = id;
         this.#name = name;
@@ -45,9 +45,9 @@ export class Person implements Rememberable {
     get age(): number {return this.#age; }
     get gender(): Gender { return this.#gender; }
     get id(): string { return this.#id; }
-    get location(): ILocation { return this.#location; }
-    get memories(): Map<Rememberable,Memory> { return this.#memories; }
-    get modifiers(): Modifier[] { return this.#modifiers; }
+    get location(): Coordinates { return this.#location; }
+    get memories(): {[key: string]: Memory} { return this.#memories; }
+    get modifiers(): string[] { return this.#modifiers; }
     get logs(): string { return this.#logs; }
 
     set name(new_name: string) { this.#name = new_name; }
@@ -55,9 +55,9 @@ export class Person implements Rememberable {
     set statistics(new_statistics: PersonStatistics) { this.#statistics = new_statistics; }
     set age(new_age: number) { this.#age = new_age; }
     set gender(new_gender: Gender) { this.#gender = new_gender; }
-    set location(new_location: ILocation) { this.#location = new_location; }
-    set memories(new_memories: Map<Rememberable,Memory>) { this.#memories = new_memories; }
-    set modifiers(new_modifiers: Modifier[]) { this.#modifiers = new_modifiers; }
+    set location(new_location: Coordinates) { this.#location = new_location; }
+    set memories(new_memories: {[key: string]: Memory}) { this.#memories = new_memories; }
+    set modifiers(new_modifiers: string[]) { this.#modifiers = new_modifiers; }
     set logs(new_logs) { this.#logs = new_logs; }
 
     changeStat(stat: keyof PersonStatistics, newValue: PersonStatistics[typeof stat]) {

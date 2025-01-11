@@ -3,12 +3,12 @@ export {
     PersonStatistics,
     PersonData,
     Race,
-    Rememberable,
     Coordinates,
     Perception,
     ModifierStatistics,
     RaceStatistics,
-    
+    LocationData,
+    CurrentSimulationInfo
 } from "./types"
 
 export {

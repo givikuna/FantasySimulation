@@ -17,7 +17,7 @@ export class Stealing implements IEvent {
         this.#visibility = 0;
     }
 
-    Noticed(guy: Person): void {
+    noticed(guy: Person): void {
         let stats: PersonStatistics = guy.statistics;
         let stealing_index: number = 
             Math.random() * Math.pow(stats.jealousy, 3) +
@@ -30,7 +30,7 @@ export class Stealing implements IEvent {
         this.#discreteness = stealing_index; //for now cus dumb tsc doesnt like me not using thing
     }
 
-    Finished(): void {
+    finished(): void {
         
     }
 }

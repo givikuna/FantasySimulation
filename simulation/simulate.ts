@@ -5,25 +5,35 @@ import { Person, ILocation } from "./classes";
 
 import { input } from "../lib/System";
 import { nextStep } from "./sim/nextStep";
-import { createPerson } from "./sim/creator";
+import { createPerson, createLocation } from "./sim/creator";
 import { newId } from "./storage/id/newid";
 
 import { PersonData, Race, SimulationState, races } from "../types";
 
 //this is here just so we can actually spawn people in, we gonna make an actual map later
-let placeholder: ILocation = {
-    people: [],
-    locationType: "lounge",
-    locationCoordinates: [[0, 0]],
-}
+let placeholder_lounge: ILocation = createLocation(
+    {
+        name: "noob place",
+        id: newId(),
+        locationCoordinates: [[1,0]],
+        locationType: "Lounge"
+    }
+)
 
 // make one individual of each fantasy race
-const people: Person[] = [...races].map((race: Race): Person => createPerson({ id: newId(), race: race, location: placeholder}));
+const people: Person[] = [...races].map((race: Race): Person => createPerson({ id: newId(), race: race, location: [0, 0]}));
+
+//this will be done automatically
+for (let i: number = 0; i < people.length; i++) {
+    placeholder_lounge.people.push(people[i].id)
+}
 
 const currentState: SimulationState = {
     persons: {},
-    locations: [placeholder],
+    locations: {},
 };
+
+currentState.locations[placeholder_lounge.id] = placeholder_lounge.jsonify();
 
 for (let i: number = 0; i < people.length; i++) {
     currentState.persons[people[i].id] = people[i].jsonify() as PersonData;

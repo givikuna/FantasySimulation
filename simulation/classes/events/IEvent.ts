@@ -5,6 +5,6 @@ export interface IEvent {
     visibility: number;
     participants: Person[];
 
-    Noticed(guy: Person): void;
-    Finished(): void;
+    noticed(guy: Person): void;
+    finished(): void;
 }

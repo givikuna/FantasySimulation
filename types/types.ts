@@ -1,6 +1,6 @@
 import { Primitive } from "type-fest";
 
-import { Memory, Modifier, ILocation } from "../simulation/classes";
+import { ILocation, Memory, Person } from "../simulation/classes";
 
 export type PersonData = {
     id: string;
@@ -9,10 +9,30 @@ export type PersonData = {
     gender: Gender;
     statistics: PersonStatistics;
     age: number;
-    location: ILocation;
-    memories: Map<Rememberable,Memory>;
-    modifiers: Modifier[];
+    location: Coordinates;
+    memories: {[key: string]: Memory};
+    modifiers: string[];
 };
+
+export type LocationData = {
+    id: string;
+    people: string[];
+    name: string;
+    locationType: string;
+    locationCoordinates: Coordinates[];
+};
+
+export type ModifierData = {
+    id: string;
+    name: string;
+    condition: number;
+};
+
+export interface CurrentSimulationInfo {
+    people: {[key: string]: Person},
+    locations: {[key: string]: ILocation},
+    sim_map: string[][]
+}
 
 export type Coordinates = [number, number];
 export type Gender = "M" | "F";
@@ -59,5 +79,4 @@ export interface ModifierStatistics {
 
 export interface PersonStatistics extends RaceStatistics {}
 
-export interface Rememberable {}
 export interface Perception extends RaceStatistics, ModifierStatistics {}

@@ -1,10 +1,11 @@
 import * as fs from "fs";
 import * as path from "path";
 
-import { Person, Memory, Modifier, ILocation } from "../classes";
+import { Person, Memory, Modifier, ILocation, locationsMap } from "../classes";
 
-import { Gender, PersonData, PersonStatistics, Race, RaceStatistics, Rememberable, basePersonStatistics } from "../../types";
+import { Coordinates, Gender, PersonData, PersonStatistics, Race, RaceStatistics, basePersonStatistics } from "../../types";
 import { dwarfStats, elfStats, humanStats, orcStats } from "../data";
+import { LocationData, ModifierData } from "../../types/types";
 
 const lastNames: string[] = fs
     .readFileSync(path.join(__dirname, "../data/names/lastNames.txt"), "utf-8")
@@ -24,7 +25,7 @@ const maleFirstNames: string[] = fs
 
 export function createPerson(
     stats:
-        | PersonData
+        PersonData
         | {
               id: string;
               name?: string | undefined;
@@ -32,14 +33,16 @@ export function createPerson(
               gender?: Gender | undefined;
               statistics?: PersonStatistics | undefined;
               age?: number | undefined;
-              location: ILocation;
-              memories?: Map<Rememberable,Memory> | undefined;
-              modifiers?: Modifier[] | undefined;
+              location: Coordinates;
+              memories?: {[key: string]: Memory} | undefined;
+              modifiers?: string[] | undefined;
           },
 ): Person {
     const age: number = stats?.age ?? 0;
-    const memories: Map<Rememberable, Memory> = stats?.memories ?? new Map<Rememberable, Memory>();
-    const modifiers: Modifier[] = stats?.modifiers ?? [];
+    const memories: {[key: string]: Memory} = stats?.memories ?? {};
+    console.log(memories instanceof Map);
+
+    const modifiers: string[] = stats?.modifiers ?? [];
     
     const gender: Gender =
         stats?.gender != undefined
@@ -86,4 +89,24 @@ export function createPerson(
               })(stats.race);
 
     return new Person(stats.id, name, stats.race, gender, statistics, age, stats.location, memories, modifiers);
+}
+
+export function createLocation(
+    stats:
+    LocationData |
+    {
+        id: string;
+        people?: string[] | undefined;
+        name: string;
+        locationType: string;
+        locationCoordinates: Coordinates[];
+    }
+): ILocation {
+    const people: string[] = stats?.people ?? [];
+
+    return new (locationsMap.get(stats.locationType))!(stats.id,people,stats.name,stats.locationCoordinates);
+}
+
+export function createModifier(stats: ModifierData): Modifier {
+    return new Modifier(stats.id, stats.name, stats.condition);
 }
