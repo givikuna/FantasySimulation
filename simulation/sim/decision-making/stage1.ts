@@ -80,7 +80,7 @@ export function stage1(person: Person, info: CurrentSimulationInfo): void {
 
         crowd_perceptions.set(person, crowd_perception)
 
-        console.log(crowd_perceptions)
-        console.log(memories)
+        //console.log(crowd_perceptions)
+        //console.log(memories)
     });
 }

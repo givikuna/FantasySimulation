@@ -15,5 +15,5 @@ export const eventsMap = new Map([
 ]);
 
 export const locationsMap = new Map([
-    ["Lounge", Lounge]
+    ["Lounge", Lounge],
 ]);

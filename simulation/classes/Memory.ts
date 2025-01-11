@@ -5,9 +5,9 @@ export class Memory {
     #associations : { [key: string]: number };
     #perception : Perception;
 
-    constructor(subject : string, associatiions: { [key: string]: number }, perception : Perception){
+    constructor(subject : string, associations: { [key: string]: number }, perception : Perception){
         this.#subject_id = subject;
-        this.#associations = associatiions;
+        this.#associations = associations;
         this.#perception = perception;
     }
 
