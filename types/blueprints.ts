@@ -17,7 +17,7 @@ export const basePersonStatistics: RaceStatistics = {
 };
 
 export const baseModifierStatistics: ModifierStatistics = {
-    expensive: 0,
+    price: 0,
     status: 0,
     impressionable: 0
 }
@@ -39,7 +39,7 @@ export const basePerception: Perception = {
     lifeSpan: 0,
 
     //modifier part
-    expensive: 0,
+    price: 0,
     status: 0,
     impressionable: 0
 }

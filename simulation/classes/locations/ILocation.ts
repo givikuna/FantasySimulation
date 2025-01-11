@@ -1,9 +1,10 @@
-import { Person } from "../Person"
-
-import { Coordinates } from "../../../types";
+import { Coordinates, LocationData } from "../../../types";
 
 export interface ILocation {
-    people: Person[];
+    id: string;
+    people: string[];
     locationType: string;
     locationCoordinates: ReadonlyArray<Coordinates>;
+
+    jsonify(): LocationData;
 }

@@ -1,7 +1,7 @@
 import { Person } from "../../classes";
 
-export function ageUp(people: Person[]): void {
-    for (let i: number = 0; i < people.length; i++) {
-        people[i].ageUp();
-    }
+export function ageUp(people: {[key: string]: Person}): void {
+    Object.keys(people).forEach(id => {
+        people[id].ageUp();
+    });
 }
