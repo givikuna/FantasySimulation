@@ -21,7 +21,7 @@ export function stage1(person: Person, info: CurrentSimulationInfo): void {
 
     let crowd_perception: Perception = Object.assign({}, basePerception);
 
-    location.people.forEach(other_guy_id => {
+    (location.people || []).forEach(other_guy_id => {
         let other_guy: Person = info.people[other_guy_id]
         if(other_guy === person){ return; } //skips our guy
 

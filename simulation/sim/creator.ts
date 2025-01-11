@@ -40,7 +40,6 @@ export function createPerson(
 ): Person {
     const age: number = stats?.age ?? 0;
     const memories: {[key: string]: Memory} = stats?.memories ?? {};
-    console.log(memories instanceof Map);
 
     const modifiers: string[] = stats?.modifiers ?? [];
     

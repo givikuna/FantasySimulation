@@ -1,5 +1,3 @@
-import { ModifierStatistics } from "../../types";
-
 export class Modifier {
     #id: string;
     #name: string;

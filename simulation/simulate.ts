@@ -15,7 +15,7 @@ let placeholder_lounge: ILocation = createLocation(
     {
         name: "noob place",
         id: newId(),
-        locationCoordinates: [[1,0]],
+        locationCoordinates: [[0,0]],
         locationType: "Lounge"
     }
 )
@@ -38,7 +38,6 @@ currentState.locations[placeholder_lounge.id] = placeholder_lounge.jsonify();
 for (let i: number = 0; i < people.length; i++) {
     currentState.persons[people[i].id] = people[i].jsonify() as PersonData;
 }
-
 fs.writeFileSync(path.join(__dirname, "storage/memory/currentState.json"), JSON.stringify(currentState));
 
 while (String(input("Next step? ")) !== "n") {

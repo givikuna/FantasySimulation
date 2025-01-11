@@ -74,7 +74,7 @@ export interface RaceStatistics {
 export interface ModifierStatistics {
     impressionable: number;
     status: number;
-    expensive: number;
+    price: number;
 }
 
 export interface PersonStatistics extends RaceStatistics {}

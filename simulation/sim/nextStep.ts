@@ -1,10 +1,10 @@
 import * as path from "path";
 import * as fs from "fs"
 
-import { Person, ILocation, Modifier } from "../classes";
+import { Person, ILocation } from "../classes";
 
 import { createLocation, createPerson } from "./creator";
-//import { ageUp } from "./module/helper";
+import { ageUp } from "./module/helper";
 import { updateState } from "../storage/memory/stateUpdater";
 import { stage1 } from "./decision-making";
 
@@ -38,7 +38,7 @@ export function nextStep(): void {
         sim_map: map
     }
     
-    //ageUp(people);
+    ageUp(people);
 
     Object.keys(people).forEach(person => { stage1(people[person], step_info) });
     
